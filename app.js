@@ -21,9 +21,20 @@ let posts = [];
 
 app.get('/', (req, res) => {
   res.render('home', {
-  homeStartingContent: homeStartingContent,
-  posts: posts});
+    homeStartingContent: homeStartingContent,
+    posts: posts
+  });
   //console.log(posts);
+});
+
+app.get('/posts/:topic', (req, res) => {
+  const requestedTitle = req.params.topic;
+  posts.forEach(post => {
+    const storedTitle = post.title;
+    if (requestedTitle === storedTitle) {
+      console.log('Match!');
+    };
+  });
 });
 
 app.get('/about', (req, res) => {
